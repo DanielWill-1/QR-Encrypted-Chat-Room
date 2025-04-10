@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Secure Chat Room</title>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      padding: 20px;
+    }
+    #messages {
+      border: 1px solid #444;
+      padding: 10px;
+      height: 300px;
+      overflow-y: scroll;
+      background-color: #1e1e1e;
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
+    }
+    .message-box {
+      margin-top: 10px;
+    }
+    .encrypted {
+      color: #999;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🔒 QR Encrypted Chat Room</h2>
+  <p><strong>Room ID:</strong> {{ room_id }}</p>
+  <p><strong>Encryption Key:</strong> {{ key }}</p>
+
+  <div id="messages"></div>
+
+  <div class="message-box">
+    <input type="text" id="username" placeholder="Your name" />
+    <input type="text" id="message" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    const socket = io();
+    const room = "{{ room_id }}";
+    const key = "{{ key }}";
+    let username = '';
+
+    socket.emit('join', { room: room, user: 'Someone' });
+
+    socket.on('status', data => {
+      appendMessage('🟢 ' + data.msg);
+    });
+
+    socket.on('receive_message', async (data) => {
+      const encrypted = data.msg;
+      const decrypted = await decryptMessage(encrypted);
+      appendMessage(`🔐 <b>${data.user}:</b> ${decrypted} <br><span class="encrypted">(encrypted: ${encrypted})</span>`);
+    });
+
+    function sendMessage() {
+      const msg = document.getElementById('message').value;
+      const user = document.getElementById('username').value || 'Anonymous';
+      username = user;
+
+      if (!msg.trim()) return;
+
+      socket.emit('send_message', {
+        room: room,
+        user: user,
+        msg: msg
+      });
+
+      document.getElementById('message').value = '';
+    }
+
+    async function decryptMessage(encryptedMsg) {
+      try {
+        const res = await axios.post('/decrypt', {
+          key: key,
+          msg: encryptedMsg
+        });
+        return res.data.decrypted;
+      } catch (err) {
+        return '[Decryption failed]';
+      }
+    }
+
+    function appendMessage(msg) {
+      const messages = document.getElementById('messages');
+      const div = document.createElement('div');
+      div.innerHTML = msg;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>
+<!-- Compare this snippet from templates/index.html: -->

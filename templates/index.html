@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Encrypted Chat</title>
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+  <h1>QR Encrypted Chat Room</h1>
+  <button id="createRoomBtn">Create Room</button>
+  <div id="qrContainer"></div>
+  <div id="roomLink" style="display: none; margin-top: 10px;"></div>
+
+  <div id="chatSection" style="display:none;">
+    <p>Room ID: <span id="roomID"></span></p>
+    <input type="text" id="username" placeholder="Your name">
+    <input type="text" id="messageInput" placeholder="Type a message">
+    <button onclick="sendMessage()">Send</button>
+    <ul id="messages"></ul>
+  </div>
+</body>
+</html>
