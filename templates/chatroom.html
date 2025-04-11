@@ -2,48 +2,202 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Secure Chat Room</title>
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 20px;
     }
+
+    .container {
+      background: #1e1e1e;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      padding: 32px;
+      max-width: 700px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-4px);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info {
+      font-size: 0.95rem;
+      color: #a0aec0;
+      margin-bottom: 16px;
+    }
+
+    .info strong {
+      color: #e2e8f0;
+    }
+
     #messages {
-      border: 1px solid #444;
-      padding: 10px;
-      height: 300px;
-      overflow-y: scroll;
-      background-color: #1e1e1e;
+      background: #252525;
+      border-radius: 12px;
+      padding: 16px;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 24px;
+      border: 1px solid #333;
     }
-    input, button {
-      padding: 10px;
-      margin-top: 10px;
+
+    #messages div {
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      background: #2d2d2d;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      word-wrap: break-word;
+      animation: fadeIn 0.3s ease-in;
+      transition: background 0.2s ease;
     }
-    .message-box {
-      margin-top: 10px;
+
+    #messages div:hover {
+      background: #353535;
     }
+
     .encrypted {
-      color: #999;
-      font-size: 0.9em;
+      color: #718096;
+      font-size: 0.85rem;
+      font-style: italic;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .message-box {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    input {
+      flex: 1;
+      padding: 12px 16px;
+      background: #333;
+      border: 1px solid #444;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #e2e8f0;
+      transition: border-color 0.3s ease;
+    }
+
+    input::placeholder {
+      color: #718096;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #63b3ed;
+      box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.2);
+    }
+
+    button {
+      padding: 12px 24px;
+      background: #63b3ed;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: #4299e1;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Custom scrollbar */
+    #messages::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #messages::-webkit-scrollbar-track {
+      background: #2d2d2d;
+      border-radius: 4px;
+    }
+
+    #messages::-webkit-scrollbar-thumb {
+      background: #4a5568;
+      border-radius: 4px;
+    }
+
+    #messages::-webkit-scrollbar-thumb:hover {
+      background: #718096;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .message-box {
+        flex-direction: column;
+      }
+
+      input, button {
+        width: 100%;
+      }
+
+      button {
+        padding: 12px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h2>🔒 Secure Chat Room</h2>
+    <div class="info">
+      <p><strong>Room ID:</strong> {{ room_id }}</p>
+      <p><strong>Encryption Key:</strong> {{ key }}</p>
+    </div>
 
-  <h2>🔒 QR Encrypted Chat Room</h2>
-  <p><strong>Room ID:</strong> {{ room_id }}</p>
-  <p><strong>Encryption Key:</strong> {{ key }}</p>
+    <div id="messages"></div>
 
-  <div id="messages"></div>
-
-  <div class="message-box">
-    <input type="text" id="username" placeholder="Your name" />
-    <input type="text" id="message" placeholder="Type a message..." />
-    <button onclick="sendMessage()">Send</button>
+    <div class="message-box">
+      <input type="text" id="username" placeholder="Your name" />
+      <input type="text" id="message" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
   </div>
 
   <script>
@@ -100,7 +254,5 @@
       messages.scrollTop = messages.scrollHeight;
     }
   </script>
-
 </body>
 </html>
-<!-- Compare this snippet from templates/index.html: -->

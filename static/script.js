@@ -17,6 +17,12 @@ document.getElementById("createRoomBtn").onclick = async () => {
   document.getElementById("qrContainer").innerHTML = '';
   document.getElementById("qrContainer").appendChild(img);
 
+  const roomUrl = `${window.location.origin}/chatroom/${roomID}/${encryptionKey}`;
+  const linkHTML = `<a href="${roomUrl}" target="_blank">${roomUrl}</a>`;
+  const roomLinkDiv = document.getElementById("roomLink");
+  roomLinkDiv.innerHTML = linkHTML;
+  roomLinkDiv.style.display = "block";
+
   // Show shareable chatroom link
   const linkDiv = document.getElementById("roomLink");
   linkDiv.innerHTML = `<p>Shareable link: <a href="${data.chat_link}" target="_blank">${data.chat_link}</a></p>`;

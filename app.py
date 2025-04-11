@@ -36,7 +36,7 @@ def create_room():
         rooms[room_id] = key
 
         # Combine room and key in QR content
-        qr_content = f"{room_id}|{key}"
+        qr_content = f"http://127.0.0.1:5000/chatroom/{room_id}/{key}"
         qr_img = qrcode.make(qr_content)
 
         # Convert QR to base64 image
@@ -53,6 +53,7 @@ def create_room():
 @app.route('/chatroom/<room_id>/<key>')
 def chatroom(room_id, key):
     if room_id not in rooms:
+        rooms[room_id] = key
         return "Invalid Room ID", 404
 
     # Optional: validate key matches the room
