@@ -197,6 +197,7 @@
       <input type="text" id="username" placeholder="Your name" />
       <input type="text" id="message" placeholder="Type a message..." />
       <button onclick="sendMessage()">Send</button>
+      <button class="leave-btn" onclick="leaveRoom()">Leave Room</button>
     </div>
   </div>
 
@@ -233,7 +234,7 @@
 
       document.getElementById('message').value = '';
     }
-
+    
     async function decryptMessage(encryptedMsg) {
       try {
         const res = await axios.post('/decrypt', {

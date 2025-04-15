@@ -64,3 +64,20 @@ Server only transmits ciphertext — it cannot read your messages.
 Pull requests are welcome! Feel free to open issues or submit feature requests.
 
 ---
+
+
+TODO:
+```
+Must-Haves:
+Typing Indicators: Low effort, high impact for interactivity.
+User Presence List: Clarifies who’s in the room, leveraging your user limit feature.
+Dark Mode Toggle: Easy to implement, aligns with your UI focus, and delights users.
+Nice-to-Haves:
+Message History Persistence: Useful for session continuity, builds on existing logic.
+Message Deletion: Adds user control, reinforcing privacy.
+Stretch Goals:
+File Sharing: Broadens use cases but requires careful size limits.
+Room Password: Enhances security but may overcomplicate for a mini-project.
+Notifications: Flashy but could distract if not optional.
+```
+---
