@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GhostLink - Secure Chat</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#d0bcff",
+                      "surface-dim": "#131313",
+                      "surface-container-highest": "#353534",
+                      "inverse-on-surface": "#313030",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "surface-container-low": "#1c1b1b",
+                      "on-primary": "#3c0091",
+                      "primary": "#d0bcff",
+                      "surface-bright": "#3a3939",
+                      "on-background": "#e5e2e1",
+                      "surface-container": "#201f1f",
+                      "surface-container-high": "#2a2a2a",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-surface": "#e5e2e1",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-secondary": "#002e6a",
+                      "background": "#131313",
+                      "on-tertiary": "#003640",
+                      "tertiary": "#4cd7f6",
+                      "surface-variant": "#353534",
+                      "surface-tint": "#d0bcff",
+                      "surface": "#131313",
+                      "inverse-primary": "#6d3bd7",
+                      "on-tertiary-fixed": "#001f26",
+                      "on-error-container": "#ffdad6",
+                      "on-error": "#690005",
+                      "on-primary-fixed": "#23005c",
+                      "tertiary-container": "#009eb9",
+                      "on-surface-variant": "#cbc3d7",
+                      "secondary-container": "#0566d9",
+                      "on-tertiary-fixed-variant": "#004e5c",
+                      "on-secondary-container": "#e6ecff",
+                      "on-primary-fixed-variant": "#5516be",
+                      "secondary": "#adc6ff",
+                      "error": "#ffb4ab",
+                      "primary-fixed": "#e9ddff",
+                      "outline": "#958ea0",
+                      "on-tertiary-container": "#002f38",
+                      "on-primary-container": "#340080",
+                      "on-secondary-fixed": "#001a42",
+                      "on-secondary-fixed-variant": "#004395",
+                      "tertiary-fixed-dim": "#4cd7f6",
+                      "error-container": "#93000a",
+                      "outline-variant": "#494454",
+                      "primary-container": "#a078ff",
+                      "inverse-surface": "#e5e2e1",
+                      "tertiary-fixed": "#acedff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "xl": "40px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "base": "4px",
+                      "container-max": "1200px",
+                      "lg": "24px",
+                      "gutter": "20px"
+              },
+              "fontFamily": {
+                      "body-rt": [
+                              "Inter"
+                      ],
+                      "mono-code": [
+                              "Geist"
+                      ],
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-rt": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "mono-code": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-md": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        .glass-panel {
+            background-color: rgba(19, 19, 19, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chat-input-glass {
+            background-color: rgba(19, 19, 19, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .chat-input-glass:focus-within {
+            border-color: rgba(208, 188, 255, 0.3);
+            box-shadow: 0 0 15px rgba(208, 188, 255, 0.1);
+        }
+
+        .msg-sent {
+            background: linear-gradient(135deg, #a078ff 0%, #6d3bd7 100%);
+            border: none;
+        }
+
+        .msg-received {
+            background-color: rgba(53, 53, 52, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="h-screen w-full overflow-hidden flex font-body-rt text-body-rt relative">
+<!-- Background Animation -->
+<!-- STITCH_SHADER_START:ANIMATION_2 class="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-none" -->
+<div class="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-none" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_2" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_2');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 uv = v_texCoord;
+    
+    // Animate color shifts
+    float noise = sin(uv.x * 3.0 + u_time * 0.5) * cos(uv.y * 2.0 - u_time * 0.3);
+    
+    vec3 color1 = vec3(0.545, 0.361, 0.965); // Purple
+    vec3 color2 = vec3(0.231, 0.51, 0.965);  // Blue
+    vec3 bg = vec3(0.039, 0.039, 0.039);     // Dark Surface
+    
+    float mixFactor = smoothstep(0.3, 0.7, uv.y + noise * 0.2);
+    vec3 finalColor = mix(bg, mix(color1, color2, uv.x), mixFactor * 0.4);
+    
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_2 -->
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-surface-container/40 backdrop-blur-2xl border-r border-white/10 h-screen w-64 left-0 top-0 fixed flex-col p-md z-40">
+<!-- Header -->
+<div class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tighter mb-sm">GhostLink</h1>
+<div class="flex items-center gap-sm glass-panel rounded p-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden shrink-0 border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A highly detailed, futuristic avatar profile picture featuring a stylized, abstract holographic ghost symbol composed of glowing geometric lines. Rendered in deep purple and cyan neon colors against a pitch-black background. The style is cyberpunk minimalism, resembling high-end sci-fi UI elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFLjh2_IIDiQX9mkXUe5uVu0LCkoR027diczrMaPJvBVLoDf7ezX_VyGuoM10_xHS5jFEcy0IcMWl0sEqA4AwRQjyGrlLyD05wOA4W8YL52w-xaTPY2VYYX6VPrfunkQjaj9vySNmca-iXQ_JqK5xbRlHcotvN42SBgkVIh6a1HQZkO2aLwzB3K5-3TheoPlu7zMAY4K99RPAa6d6o6oIjKoFmg_WXGmYVr9ZxecPLIIf7HsXnZA1atPXE4CFzBh9RE7XaXFJN7KQ"/>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface">Session Active</div>
+<div class="font-mono-code text-mono-code text-on-surface-variant text-[10px]">P2P Protocol v2.1</div>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full mb-lg py-sm px-md rounded bg-surface-variant/50 hover:bg-white/10 transition-colors border border-white/10 flex items-center justify-center gap-sm group">
+<span class="material-symbols-outlined text-primary text-[18px]">add</span>
+<span class="font-body-sm text-body-sm text-primary group-hover:brightness-125 transition-all">New Session</span>
+</button>
+<!-- Navigation Tabs -->
+<div class="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-xs">
+<button class="bg-primary/20 text-primary border-r-2 border-primary flex items-center gap-md px-sm py-xs rounded-l hover:brightness-125 transition-all active:translate-x-1">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+<span class="font-body-sm text-body-sm font-bold">Active Sessions</span>
+</button>
+<button class="text-on-surface-variant hover:bg-white/5 flex items-center gap-md px-sm py-xs rounded hover:text-on-surface transition-colors active:translate-x-1">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="font-body-sm text-body-sm">Connected Peers</span>
+</button>
+<button class="text-on-surface-variant hover:bg-white/5 flex items-center gap-md px-sm py-xs rounded hover:text-on-surface transition-colors active:translate-x-1">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</button>
+<button class="text-on-surface-variant hover:bg-white/5 flex items-center gap-md px-sm py-xs rounded hover:text-on-surface transition-colors active:translate-x-1">
+<span class="material-symbols-outlined text-[20px]">encrypted</span>
+<span class="font-body-sm text-body-sm">Vault</span>
+</button>
+</div>
+<!-- Footer Tab -->
+<div class="pt-md mt-md border-t border-white/10">
+<button class="w-full text-on-surface-variant hover:bg-white/5 flex items-center gap-md px-sm py-xs rounded hover:text-on-surface transition-colors active:translate-x-1">
+<span class="material-symbols-outlined text-[20px]">policy</span>
+<span class="font-body-sm text-body-sm">Security Log</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col relative z-10 md:ml-64 h-full">
+<!-- TopAppBar -->
+<header class="bg-surface/40 backdrop-blur-xl fixed top-0 w-full md:w-[calc(100%-256px)] z-50 flex justify-between items-center px-lg py-sm border-b border-white/10">
+<div class="flex items-center gap-md">
+<!-- Mobile Menu Button (Hidden on Desktop) -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div>
+<h2 class="font-title-md text-title-md text-on-surface flex items-center gap-sm">
+                        Session GX-8821
+                        <div class="font-mono-code text-[10px] px-2 py-0.5 rounded-full border border-tertiary/30 text-tertiary bg-tertiary/10 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+                            End-to-End Encrypted
+                        </div>
+</h2>
+</div>
+</div>
+<div class="flex items-center gap-sm md:gap-md">
+<div class="hidden md:flex items-center gap-sm text-on-surface-variant border-r border-white/10 pr-md mr-xs">
+<button class="hover:text-primary hover:brightness-125 transition-all active:scale-95"><span class="material-symbols-outlined text-[20px]">qr_code_scanner</span></button>
+<button class="hover:text-primary hover:brightness-125 transition-all active:scale-95"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">security</span></button>
+<button class="hover:text-primary hover:brightness-125 transition-all active:scale-95"><span class="material-symbols-outlined text-[20px]">signal_cellular_alt</span></button>
+</div>
+<button class="bg-error/10 hover:bg-error/20 border border-error/20 text-error px-md py-xs rounded font-label-caps text-label-caps transition-colors active:scale-95 flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">lock_open</span>
+<span class="hidden sm:inline">Destroy Session</span>
+</button>
+</div>
+</header>
+<!-- Chat Canvas -->
+<div class="flex-1 overflow-y-auto px-md md:px-lg pt-24 pb-24 no-scrollbar flex flex-col gap-lg">
+<!-- Date Separator -->
+<div class="flex justify-center my-sm">
+<span class="font-mono-code text-mono-code text-on-surface-variant/50 text-[11px] uppercase tracking-widest glass-panel px-3 py-1 rounded-full">Today</span>
+</div>
+<!-- Message Group: Received -->
+<div class="flex flex-col gap-xs max-w-[85%] md:max-w-[70%]">
+<div class="flex items-end gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden shrink-0 border border-white/10 mb-6">
+<img class="w-full h-full object-cover" data-alt="A highly detailed close-up of a digital avatar representing an anonymous user. The image features a sleek, dark-grey geometric mask or helmet with a subtle, glowing blue visor slit. Set against a deep, pure black background. The lighting is dramatic, edge-lit with a cool cyan hue, emphasizing the premium, high-tech, and secure nature of the design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9H3z_HTMQ1bKB-t-JMc-U1UspDt8UnvYUEJbS8MTu4YsXXXWFw6rEeHoBVFJb1hwP8ipvcIo1vGcTfn37WFMiVDHuqcSAiUxjqCDBlfhk-ueDe0eMeNAa7JukdbAnsN0FakdJcMfnfLA38sOq0YrEp0Cv8btGx_deo5ALZfwXdS1NIer3WFY0nudiNzEh6y6BBD4ppM1HmfjtQPcRdTyTDyr7eIOU9ytX1_Y2VGQALrKm2pb-1PpYWGTeeHaeE1qMTzALFBlvYoI"/>
+</div>
+<div class="flex flex-col gap-xs w-full">
+<div class="flex items-baseline gap-sm ml-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Agent_K</span>
+<span class="font-mono-code text-[10px] text-on-surface-variant/50">14:02 UTC</span>
+</div>
+<div class="msg-received rounded-2xl rounded-bl-sm p-md text-on-surface font-body-sm text-body-sm shadow-sm">
+                            Connection established. The payload is ready for transfer. Have you secured the local environment?
+                        </div>
+</div>
+</div>
+</div>
+<!-- Message Group: Sent -->
+<div class="flex flex-col gap-xs max-w-[85%] md:max-w-[70%] self-end">
+<div class="flex items-end gap-sm flex-row-reverse">
+<div class="flex flex-col gap-xs items-end w-full">
+<div class="flex items-baseline gap-sm mr-1 flex-row-reverse">
+<span class="font-label-caps text-label-caps text-primary">You</span>
+<span class="font-mono-code text-[10px] text-on-surface-variant/50">14:03 UTC</span>
+</div>
+<div class="msg-sent rounded-2xl rounded-br-sm p-md text-white font-body-sm text-body-sm shadow-md">
+                            Environment is locked down. Ghost protocol active. Send the schematics.
+                        </div>
+</div>
+</div>
+</div>
+<!-- Message Group: Received (With Attachment) -->
+<div class="flex flex-col gap-xs max-w-[85%] md:max-w-[70%]">
+<div class="flex items-end gap-sm">
+<div class="w-8 h-8 rounded-full bg-transparent shrink-0 mb-6"></div> <!-- Spacer for avatar -->
+<div class="flex flex-col gap-xs w-full">
+<div class="msg-received rounded-2xl p-sm text-on-surface font-body-sm text-body-sm shadow-sm flex flex-col gap-sm">
+<div class="w-full h-48 rounded-lg overflow-hidden relative group">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A highly detailed, futuristic abstract architectural rendering. The image shows a complex, wireframe-like structure of a server farm or data center floating in a void. Rendered in sharp lines of neon purple and deep blue against a pure black background. The style is reminiscent of high-end, minimal sci-fi interface blueprints, conveying secure data transfer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeJXjruIGrKeFrxQdkrtI8LRBWyaCKCE08ecAKXI3A4sfjSPNS9-gzVA_yJ9WoKuxbIPpZ_2BIsAO-FWQ1dezgt8Z2LLOSYjs1Ne0c-s6uPTeQmN594TerNooqL7pC4jxSCxxzO3lGIyQu1QoxuNruFkkc7CN1Rzrx7x_yTjoePQTXIbnRiEiudD6dk-A0TMqxhT0tcQfJmugmzD9tfJgxkMjoWbYTAgKXmsRpLeLbJfisezR2n5AcZnLKF9j1nbE4zLB3Q3wsqq4"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+<button class="bg-primary/90 text-on-primary rounded-full p-2 hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">download</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-2 px-2 pb-1">
+<span class="material-symbols-outlined text-primary text-[16px]">image</span>
+<span class="font-mono-code text-[11px] text-on-surface-variant truncate flex-1">nexus_schematic_v4.png</span>
+<span class="font-mono-code text-[10px] text-on-surface-variant/50">4.2 MB</span>
+</div>
+</div>
+<div class="msg-received rounded-2xl rounded-bl-sm p-md text-on-surface font-body-sm text-body-sm shadow-sm mt-xs">
+                            Review these immediately. The window closes in 5 minutes.
+                        </div>
+</div>
+</div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex flex-col gap-xs max-w-[85%] md:max-w-[70%]">
+<div class="flex items-end gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden shrink-0 border border-white/10 mb-2">
+<img class="w-full h-full object-cover" data-alt="A highly detailed close-up of a digital avatar representing an anonymous user. The image features a sleek, dark-grey geometric mask or helmet with a subtle, glowing blue visor slit. Set against a deep, pure black background. The lighting is dramatic, edge-lit with a cool cyan hue, emphasizing the premium, high-tech, and secure nature of the design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAoHzxyXdn4lT5khJ0NQvMGcL8y5AZ5NviZtsNjFueIl-Jkm3G1p18HeQTF_TDwKmzpwjdvN_im1fGnFYc_B6eTJ8qDN-LfTi3QmSf3DHotIVrE1l7KL9ZxVexMsZd9J3lReFtVjZCdf94uRpISBEIkougn9Ue_bxNg4mOzdmLPzv4WM7d0qCUzoU2flcKsBU88NJ4WkMcFb_Oj37eEq75IMBgV8mEci4v3V8l40qOj3IPRotStcVQKSoLd44QNWEy0-sDWyoOaCw"/>
+</div>
+<div class="msg-received rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm flex items-center gap-1 h-10">
+<span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full typing-dot"></span>
+<span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full typing-dot"></span>
+<span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full typing-dot"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Input Area -->
+<div class="absolute bottom-0 w-full px-md md:px-lg pb-md pt-lg bg-gradient-to-t from-background via-background/90 to-transparent z-20">
+<div class="chat-input-glass rounded-full flex items-center p-2 gap-2 max-w-4xl mx-auto shadow-lg relative overflow-hidden">
+<!-- Inner glow effect on focus handled by CSS -->
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors shrink-0 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body-sm text-body-sm placeholder-on-surface-variant/50 px-2 h-10" placeholder="Transmit message..." type="text"/>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors shrink-0 rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">sentiment_satisfied</span>
+</button>
+<button class="w-10 h-10 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-full flex items-center justify-center transition-all active:scale-95 shrink-0 group">
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+<div class="text-center mt-2 font-mono-code text-[10px] text-on-surface-variant/40">
+                Messages are permanently destroyed upon session termination.
+            </div>
+</div>
+</main>
+</body></html>

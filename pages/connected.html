@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GhostLink - Connected Peers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#3a3939",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed": "#23005c",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#d0bcff",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary": "#003640",
+                        "error-container": "#93000a",
+                        "on-secondary": "#002e6a",
+                        "on-tertiary-fixed": "#001f26",
+                        "primary-fixed": "#e9ddff",
+                        "on-surface-variant": "#cbc3d7",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "inverse-primary": "#6d3bd7",
+                        "surface-variant": "#353534",
+                        "surface-container": "#201f1f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed-variant": "#5516be",
+                        "tertiary-fixed": "#acedff",
+                        "tertiary-container": "#009eb9",
+                        "secondary-container": "#0566d9",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#d0bcff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "outline": "#958ea0",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-container": "#002f38",
+                        "primary-container": "#a078ff",
+                        "on-secondary-container": "#e6ecff",
+                        "tertiary": "#4cd7f6",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#494454",
+                        "on-background": "#e5e2e1",
+                        "background": "#131313",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary-fixed": "#001a42",
+                        "on-error": "#690005",
+                        "primary": "#d0bcff",
+                        "secondary": "#adc6ff",
+                        "on-primary": "#3c0091",
+                        "inverse-on-surface": "#313030",
+                        "on-primary-container": "#340080"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "gutter": "20px",
+                        "container-max": "1200px",
+                        "xl": "40px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display": ["Inter"],
+                        "mono-code": ["Geist"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-rt": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["18px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "mono-code": ["13px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-rt": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+        }
+        .glass-panel {
+            background-color: rgba(19, 19, 19, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-hover:hover {
+            background-color: rgba(19, 19, 19, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(208, 188, 255, 0.1);
+        }
+        .text-gradient-primary {
+            background: linear-gradient(90deg, #d0bcff 0%, #adc6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(90deg, #d0bcff 0%, #adc6ff 100%);
+        }
+    </style>
+</head>
+<body class="font-body-rt antialiased overflow-x-hidden min-h-screen flex">
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex bg-surface-container/40 backdrop-blur-2xl h-screen w-64 left-0 top-0 border-r border-white/10 fixed flex-col p-md z-40">
+<div class="mb-xl flex flex-col items-start gap-sm">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tighter">GhostLink</h1>
+<div class="flex items-center gap-sm mt-sm">
+<img alt="User Ghost Avatar" class="w-10 h-10 rounded-full border border-white/10 object-cover" data-alt="Abstract glowing geometric avatar in dark mode, neon purple and blue accents, high contrast, sleek cyber aesthetic, small rounded profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy37X6zfFzeAjA4tVGQe0ZMw0nxfP3RKJB1jFuvpcGd3Gl1FGyHfW7NW245T0xsMgE8ZhuWZr-_5mEq7VrzWYLVPx_bILQemSaCGm0GEopU8QrwonsGeH2A6PDdKS5aKvG-nuLu-251KNcoHZuLu7w92CXJNNhmlonwFcf7YuTrcVzp7ScpnLTn3GXbhHa8xehin5uUnI2O8vIIzgQKUN2frVcdjVb9xDZGuAsi89lP3OEexLEQu6dkAv1YbC8Czg4wwyp9ot2jr0"/>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Session Active</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">P2P Protocol v2.1</p>
+</div>
+</div>
+<button class="w-full mt-md bg-gradient-primary text-on-primary font-title-md text-title-md py-sm rounded-lg hover:brightness-125 transition-all active:scale-95 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                New Session
+            </button>
+</div>
+<ul class="flex flex-col gap-sm flex-grow">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-white/10 transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-body-sm text-body-sm">Active Sessions</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-primary/20 text-primary border-r-2 border-primary hover:bg-white/10 transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-body-sm text-body-sm font-bold">Connected Peers</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-white/10 transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-white/10 transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined">encrypted</span>
+<span class="font-body-sm text-body-sm">Vault</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-lg border-t border-white/10">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-white/10 transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined">policy</span>
+<span class="font-body-sm text-body-sm">Security Log</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow md:ml-64 relative min-h-screen">
+<!-- TopAppBar (Mobile & Desktop) -->
+<header class="fixed top-0 w-full md:w-[calc(100%-16rem)] z-50 flex justify-between items-center px-lg py-sm bg-surface/40 backdrop-blur-xl border-b border-white/10">
+<div class="md:hidden">
+<h1 class="font-display text-headline-lg-mobile text-primary tracking-tighter">GhostLink</h1>
+</div>
+<div class="hidden md:block">
+<h2 class="font-title-md text-title-md text-on-surface">Network Map</h2>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined hover:brightness-125 transition-all cursor-pointer">lock_open</span>
+<span class="material-symbols-outlined hover:brightness-125 transition-all cursor-pointer">security</span>
+<span class="material-symbols-outlined hover:brightness-125 transition-all cursor-pointer text-primary" style="font-variation-settings: 'FILL' 1;">signal_cellular_alt</span>
+</div>
+<button class="bg-white/10 border border-white/20 text-on-surface font-label-caps text-label-caps px-md py-xs rounded-full hover:brightness-125 transition-all active:scale-95 flex items-center gap-xs">
+                    Destroy Session
+                </button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="pt-24 px-md md:px-lg pb-lg max-w-container-max mx-auto">
+<div class="mb-lg flex justify-between items-end">
+<div>
+<h2 class="font-display text-display text-on-surface mb-xs">Connected Peers</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Active P2P nodes in current secure enclave.</p>
+</div>
+<div class="hidden md:flex gap-sm">
+<span class="font-label-caps text-label-caps text-primary border border-primary/30 bg-primary/10 px-sm py-xs rounded-full flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span> E2E Encrypted
+                    </span>
+<span class="font-label-caps text-label-caps text-tertiary border border-tertiary/30 bg-tertiary/10 px-sm py-xs rounded-full flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary inline-block"></span> Local Routing
+                    </span>
+</div>
+</div>
+<!-- Bento Grid of Peers -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Peer Card 1 -->
+<div class="glass-panel glass-panel-hover rounded-xl p-md flex flex-col gap-md transition-all duration-300 group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<img alt="Peer 1 Avatar" class="w-12 h-12 rounded-lg border border-white/10 object-cover" data-alt="Abstract holographic ghost icon, dark background, glowing neon blue edges, minimalist tech aesthetic, small profile image." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVpR-Lzy_CKwBT7C-3P36hsNEJYDvb2eucCDyuq5zGp801PTDMIcrUAuLufhTTgXNVyEnAoegCWwD--MFJNl7pIgV8PMBPLIC-yNrc5RXqaqypQe0rOu7OPe4tx26H63IVq2e8yaen6S98oB_mk0C2hXQ4reUap0lqsN9fmYzFW0vJfJpRZVyqxldE0NpCEcTi6RbofHAe59eqm7Vst052YOq2qh4TGINkUkgRC2RppaqnvP2-gUpHFy9Pv1-3jCulUJChN7KyUow"/>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Node Alpha-9</h3>
+<p class="font-mono-code text-mono-code text-on-surface-variant">ID: 0x8F2a...9b4C</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">wifi</span>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-white/5 rounded-lg p-sm border border-white/5">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Latency</p>
+<p class="font-body-rt text-body-rt text-on-surface">12ms</p>
+</div>
+<div class="bg-white/5 rounded-lg p-sm border border-white/5">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Bandwidth</p>
+<p class="font-body-rt text-body-rt text-on-surface">1.2 Gbps</p>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden mt-sm">
+<div class="bg-primary h-full rounded-full w-[95%]"></div>
+</div>
+<div class="flex gap-sm mt-auto pt-sm border-t border-white/10">
+<button class="flex-1 bg-white/10 hover:bg-white/20 text-on-surface font-label-caps text-label-caps py-sm rounded-lg transition-colors border border-white/10 flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">verified</span> Verify
+                        </button>
+<button class="flex-1 bg-error-container/20 hover:bg-error-container/40 text-error font-label-caps text-label-caps py-sm rounded-lg transition-colors border border-error/20 flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">link_off</span> Disconnect
+                        </button>
+</div>
+</div>
+<!-- Peer Card 2 -->
+<div class="glass-panel glass-panel-hover rounded-xl p-md flex flex-col gap-md transition-all duration-300 group">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<img alt="Peer 2 Avatar" class="w-12 h-12 rounded-lg border border-white/10 object-cover" data-alt="Abstract geometric avatar, dark mode, vibrant cyan and purple data lines forming a face, sleek cyber look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-zSMVyQyM37BGBVYQ0bS3XkZJefSIP7vyoAFOVe6iSeAdzs8CSODt5cLAIefyB5p5relnstj-EVh_d_LPnWtz5Eq4Asm1LDedVQNPEiurDr2nUF9uOCYCFM8zyWyfPrjnl_YW6B6xsOUFMY7JwGVPaxUfEfwpyH3jtWqwstjGd3nys8rTDx8XM3JAbJVcChgKy57K0psb3Y1tg6R_bbgXknE0OCmD8ElvAQ8hBKlxMzKeogMRkPHf8R8Uk1mEUXX-kpJHc_NmR10"/>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Proxy Nexus</h3>
+<p class="font-mono-code text-mono-code text-on-surface-variant">ID: 0x3E1b...7a2F</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">wifi_1_bar</span>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-white/5 rounded-lg p-sm border border-white/5">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Latency</p>
+<p class="font-body-rt text-body-rt text-secondary">145ms</p>
+</div>
+<div class="bg-white/5 rounded-lg p-sm border border-white/5">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-xs">Bandwidth</p>
+<p class="font-body-rt text-body-rt text-on-surface">54 Mbps</p>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden mt-sm">
+<div class="bg-secondary h-full rounded-full w-[40%]"></div>
+</div>
+<div class="flex gap-sm mt-auto pt-sm border-t border-white/10">
+<button class="flex-1 bg-white/10 hover:bg-white/20 text-on-surface font-label-caps text-label-caps py-sm rounded-lg transition-colors border border-white/10 flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">verified</span> Verify
+                        </button>
+<button class="flex-1 bg-error-container/20 hover:bg-error-container/40 text-error font-label-caps text-label-caps py-sm rounded-lg transition-colors border border-error/20 flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">link_off</span> Disconnect
+                        </button>
+</div>
+</div>
+<!-- Peer Card 3 (Pending) -->
+<div class="glass-panel rounded-xl p-md flex flex-col gap-md border-dashed border-white/20 opacity-70">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-lg border border-white/10 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant animate-pulse">radar</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface">Unknown Node</h3>
+<p class="font-mono-code text-mono-code text-on-surface-variant">Handshaking...</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">sync</span>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-white/5 rounded-lg p-sm border border-white/5 flex items-center justify-center">
+<div class="w-4 h-4 border-2 border-outline border-t-transparent rounded-full animate-spin"></div>
+</div>
+<div class="bg-white/5 rounded-lg p-sm border border-white/5 flex items-center justify-center">
+<div class="w-4 h-4 border-2 border-outline border-t-transparent rounded-full animate-spin"></div>
+</div>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden mt-sm relative">
+<div class="absolute inset-0 bg-outline/30 animate-pulse"></div>
+</div>
+<div class="flex gap-sm mt-auto pt-sm border-t border-white/10">
+<button class="flex-1 bg-white/5 text-on-surface-variant font-label-caps text-label-caps py-sm rounded-lg cursor-not-allowed border border-white/5 flex justify-center items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">hourglass_empty</span> Pending
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GhostLink - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#3a3939",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed": "#23005c",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#d0bcff",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary": "#003640",
+                        "error-container": "#93000a",
+                        "on-secondary": "#002e6a",
+                        "on-tertiary-fixed": "#001f26",
+                        "primary-fixed": "#e9ddff",
+                        "on-surface-variant": "#cbc3d7",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "inverse-primary": "#6d3bd7",
+                        "surface-variant": "#353534",
+                        "surface-container": "#201f1f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed-variant": "#5516be",
+                        "tertiary-fixed": "#acedff",
+                        "tertiary-container": "#009eb9",
+                        "secondary-container": "#0566d9",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#d0bcff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "outline": "#958ea0",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-container": "#002f38",
+                        "primary-container": "#a078ff",
+                        "on-secondary-container": "#e6ecff",
+                        "tertiary": "#4cd7f6",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#494454",
+                        "on-background": "#e5e2e1",
+                        "background": "#131313",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary-fixed": "#001a42",
+                        "on-error": "#690005",
+                        "primary": "#d0bcff",
+                        "secondary": "#adc6ff",
+                        "on-primary": "#3c0091",
+                        "inverse-on-surface": "#313030",
+                        "on-primary-container": "#340080"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "gutter": "20px",
+                        "container-max": "1200px",
+                        "xl": "40px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display": ["Inter"],
+                        "mono-code": ["Geist"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-rt": ["Inter"]
+                    },
+                    "fontSize": {
+                        "title-md": ["18px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "mono-code": ["13px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-rt": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #0A0A0A; color: #e5e2e1; }
+        .glass-panel {
+            background-color: rgba(19, 19, 19, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-level-2 {
+            background-color: rgba(19, 19, 19, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .primary-gradient { background: linear-gradient(135deg, #a078ff 0%, #0566d9 100%); }
+        .text-gradient { background: linear-gradient(135deg, #d0bcff 0%, #4cd7f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glow-active { box-shadow: 0 0 15px rgba(208, 188, 255, 0.2); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-hidden selection:bg-primary-container selection:text-on-primary-container h-screen w-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex flex-col bg-surface-container/40 backdrop-blur-2xl h-screen w-64 left-0 top-0 border-r border-white/10 p-md shrink-0 z-40 fixed">
+<!-- Header -->
+<div class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tighter mb-xs">GhostLink</h1>
+<div class="flex items-center gap-sm mt-md glass-panel p-sm rounded-lg">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-white/10">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-on-surface truncate w-32">Session Active</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate w-32">P2P Protocol v2.1</div>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex-1 overflow-y-auto pr-sm space-y-sm">
+<a class="flex items-center gap-md px-sm py-sm rounded-md text-on-surface-variant hover:bg-white/5 transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-title-md text-title-md">Active Sessions</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm rounded-md text-on-surface-variant hover:bg-white/5 transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-title-md text-title-md">Connected Peers</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-md px-sm py-sm rounded-md bg-primary/20 text-primary border-r-2 border-primary active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-title-md text-title-md font-bold">Settings</span>
+</a>
+<a class="flex items-center gap-md px-sm py-sm rounded-md text-on-surface-variant hover:bg-white/5 transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined">encrypted</span>
+<span class="font-title-md text-title-md">Vault</span>
+</a>
+</div>
+<!-- Footer / CTA -->
+<div class="mt-auto pt-md space-y-sm">
+<button class="w-full primary-gradient text-white font-title-md text-title-md py-sm rounded-lg hover:brightness-125 transition-all flex justify-center items-center gap-xs shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Session
+            </button>
+<a class="flex items-center gap-md px-sm py-sm rounded-md text-on-surface-variant hover:bg-white/5 transition-colors active:translate-x-1 mt-sm" href="#">
+<span class="material-symbols-outlined">policy</span>
+<span class="font-title-md text-title-md">Security Log</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 h-full overflow-y-auto relative">
+<!-- Mobile Header (Hidden on Desktop) -->
+<header class="md:hidden sticky top-0 z-50 glass-panel-level-2 border-b border-white/10 px-md py-sm flex justify-between items-center">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tighter">Settings</h1>
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<div class="max-w-[container-max] mx-auto p-md md:p-xl space-y-xl pb-32">
+<div class="mb-lg hidden md:block">
+<h2 class="font-display text-display text-on-surface tracking-tight">Settings</h2>
+<p class="font-body-rt text-body-rt text-on-surface-variant mt-xs">Manage your ephemeral identity and protocol preferences.</p>
+</div>
+<!-- Bento Grid Layout for Settings -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Profile Card (Spans 8 cols on lg) -->
+<section class="lg:col-span-8 glass-panel rounded-xl p-lg flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div class="flex items-center gap-sm mb-sm border-b border-white/5 pb-sm">
+<span class="material-symbols-outlined text-primary">person</span>
+<h3 class="font-title-md text-title-md text-primary">Profile</h3>
+</div>
+<div class="flex flex-col sm:flex-row gap-lg items-start sm:items-center">
+<!-- Avatar Upload -->
+<div class="relative w-24 h-24 rounded-full glass-panel-level-2 flex items-center justify-center border-2 border-dashed border-white/20 hover:border-primary/50 transition-colors cursor-pointer group/avatar shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl group-hover/avatar:text-primary transition-colors">upload</span>
+<div class="absolute inset-0 rounded-full bg-black/50 opacity-0 group-hover/avatar:opacity-100 flex items-center justify-center transition-opacity backdrop-blur-sm">
+<span class="font-label-caps text-label-caps text-white">CHANGE</span>
+</div>
+</div>
+<!-- Ghost Name Input -->
+<div class="flex-1 w-full space-y-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant">GHOST NAME (VISIBLE TO PEERS)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-high/60 border border-white/10 rounded-lg py-sm px-md text-on-surface font-mono-code text-mono-code focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-on-surface-variant/50" type="text" value="Cipher_99"/>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">edit</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/70 text-xs">This identifier is used in public discovery. Changes take effect on next session restart.</p>
+</div>
+</div>
+</section>
+<!-- Security Card (Spans 4 cols on lg) -->
+<section class="lg:col-span-4 glass-panel rounded-xl p-lg flex flex-col gap-md relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-bl from-error/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div class="flex items-center gap-sm mb-sm border-b border-white/5 pb-sm">
+<span class="material-symbols-outlined text-error">security</span>
+<h3 class="font-title-md text-title-md text-error">Security</h3>
+</div>
+<div class="space-y-lg flex-1">
+<!-- Encryption Protocol -->
+<div class="space-y-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex justify-between">
+                                PROTOCOL
+                                <span class="text-tertiary">E2EE ACTIVE</span>
+</label>
+<select class="w-full bg-surface-container-high/60 border border-white/10 rounded-lg py-sm px-md text-on-surface font-title-md text-title-md appearance-none focus:outline-none focus:border-primary transition-all">
+<option>X25519 (Default)</option>
+<option>Kyber-512 (Post-Quantum)</option>
+<option>NTRU-HRSS</option>
+</select>
+</div>
+<!-- Auto-Destroy Toggle -->
+<div class="flex items-center justify-between p-sm rounded-lg glass-panel-level-2 border-white/5">
+<div>
+<div class="font-title-md text-title-md text-on-surface">Auto-Destroy</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant text-xs">Wipe keys on disconnect</div>
+</div>
+<!-- Custom Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary shadow-inner"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Appearance Card (Spans 6 cols on lg) -->
+<section class="lg:col-span-6 glass-panel rounded-xl p-lg flex flex-col gap-md">
+<div class="flex items-center gap-sm mb-sm border-b border-white/5 pb-sm">
+<span class="material-symbols-outlined text-tertiary">palette</span>
+<h3 class="font-title-md text-title-md text-tertiary">Appearance</h3>
+</div>
+<div class="space-y-lg">
+<!-- Transparency Level -->
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps text-on-surface-variant">GLASS OPACITY</label>
+<span class="font-mono-code text-mono-code text-primary">40%</span>
+</div>
+<input class="w-full h-1 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="40"/>
+<div class="flex justify-between text-xs font-body-sm text-on-surface-variant/50">
+<span>Solid</span>
+<span>Ghost</span>
+</div>
+</div>
+<!-- Accent Color Picker (Simulated) -->
+<div class="space-y-sm pt-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant">ACCENT HUE</label>
+<div class="flex gap-md">
+<button class="w-8 h-8 rounded-full bg-primary ring-2 ring-white/50 ring-offset-2 ring-offset-background transition-all"></button>
+<button class="w-8 h-8 rounded-full bg-tertiary hover:ring-2 hover:ring-white/30 hover:ring-offset-2 hover:ring-offset-background transition-all"></button>
+<button class="w-8 h-8 rounded-full bg-error hover:ring-2 hover:ring-white/30 hover:ring-offset-2 hover:ring-offset-background transition-all"></button>
+<button class="w-8 h-8 rounded-full bg-secondary-container hover:ring-2 hover:ring-white/30 hover:ring-offset-2 hover:ring-offset-background transition-all"></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Advanced / Network Card (Spans 6 cols on lg) -->
+<section class="lg:col-span-6 glass-panel rounded-xl p-lg flex flex-col gap-md">
+<div class="flex items-center gap-sm mb-sm border-b border-white/5 pb-sm">
+<span class="material-symbols-outlined text-secondary-fixed">router</span>
+<h3 class="font-title-md text-title-md text-secondary-fixed">Network (Advanced)</h3>
+</div>
+<div class="space-y-md">
+<!-- P2P Port -->
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant">P2P LISTEN PORT</label>
+<div class="flex gap-sm">
+<input class="w-32 bg-surface-container-high/60 border border-white/10 rounded-lg py-xs px-sm text-on-surface font-mono-code text-mono-code focus:outline-none focus:border-primary transition-all" type="number" value="44321"/>
+<button class="px-sm py-xs rounded-lg glass-panel-level-2 text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps">RANDOMIZE</button>
+</div>
+</div>
+<!-- STUN/TURN Servers -->
+<div class="space-y-xs pt-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant">STUN/TURN RELAYS</label>
+<div class="bg-surface-container-highest/50 border border-white/5 rounded-lg p-sm space-y-sm">
+<div class="flex justify-between items-center font-mono-code text-mono-code text-sm">
+<span class="text-on-surface">stun.l.google.com:19302</span>
+<span class="text-tertiary text-xs">Active</span>
+</div>
+<div class="flex justify-between items-center font-mono-code text-mono-code text-sm">
+<span class="text-on-surface-variant">turn:relay.ghostlink.net:443</span>
+<span class="text-on-surface-variant/50 text-xs">Standby</span>
+</div>
+<button class="w-full mt-sm py-xs rounded-md border border-dashed border-white/20 text-on-surface-variant hover:border-primary/50 hover:text-primary transition-colors font-body-sm text-xs flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Custom Relay
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Action Footer -->
+<div class="lg:col-span-12 flex justify-end gap-md mt-lg border-t border-white/10 pt-lg">
+<button class="px-lg py-sm rounded-lg glass-panel-level-2 text-on-surface font-title-md text-title-md hover:bg-white/5 transition-colors border border-white/10">
+                        Discard Changes
+                    </button>
+<button class="px-lg py-sm rounded-lg primary-gradient text-white font-title-md text-title-md shadow-lg shadow-primary/20 hover:brightness-125 transition-all active:scale-95">
+                        Apply Settings
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Nav (Hidden on Desktop) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 glass-panel-level-2 border-t border-white/10 flex justify-around items-center pb-safe pt-xs px-sm h-16">
+<a class="flex flex-col items-center gap-1 p-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-caps text-[10px]">Sessions</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-[10px]">Peers</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-sm text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-caps text-[10px] font-bold">Settings</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">encrypted</span>
+<span class="font-label-caps text-[10px]">Vault</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,279 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap");
+@import "@fontsource/inter";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/geist-sans";
+@import "@fontsource/geist-sans/400.css";
+@import "@fontsource/geist-sans/600.css";
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+@theme {
+  --color-surface-bright: #3a3939;
+  --color-error: #ffb4ab;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface: #131313;
+  --color-secondary-fixed-dim: #adc6ff;
+  --color-on-primary-fixed: #23005c;
+  --color-surface-dim: #131313;
+  --color-primary-fixed-dim: #d0bcff;
+  --color-on-surface: #e5e2e1;
+  --color-on-tertiary: #003640;
+  --color-error-container: #93000a;
+  --color-on-secondary: #002e6a;
+  --color-on-tertiary-fixed: #001f26;
+  --color-primary-fixed: #e9ddff;
+  --color-on-surface-variant: #cbc3d7;
+  --color-tertiary-fixed-dim: #4cd7f6;
+  --color-inverse-primary: #6d3bd7;
+  --color-surface-variant: #353534;
+  --color-surface-container: #201f1f;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-high: #2a2a2a;
+  --color-on-primary-fixed-variant: #5516be;
+  --color-tertiary-fixed: #acedff;
+  --color-tertiary-container: #009eb9;
+  --color-secondary-container: #0566d9;
+  --color-on-error-container: #ffdad6;
+  --color-surface-tint: #d0bcff;
+  --color-on-secondary-fixed-variant: #004395;
+  --color-outline: #958ea0;
+  --color-on-tertiary-fixed-variant: #004e5c;
+  --color-inverse-surface: #e5e2e1;
+  --color-on-tertiary-container: #002f38;
+  --color-primary-container: #a078ff;
+  --color-on-secondary-container: #e6ecff;
+  --color-tertiary: #4cd7f6;
+  --color-surface-container-highest: #353534;
+  --color-outline-variant: #494454;
+  --color-on-background: #e5e2e1;
+  --color-background: #131313;
+  --color-secondary-fixed: #d8e2ff;
+  --color-on-secondary-fixed: #001a42;
+  --color-on-error: #690005;
+  --color-primary: #d0bcff;
+  --color-secondary: #adc6ff;
+  --color-on-primary: #3c0091;
+  --color-inverse-on-surface: #313030;
+  --color-on-primary-container: #340080;
+
+  --font-family-title-md: "Inter";
+  --font-family-label-caps: "Geist";
+  --font-family-headline-lg: "Inter";
+  --font-family-body-sm: "Inter";
+  --font-family-display: "Inter";
+  --font-family-mono-code: "Geist";
+  --font-family-headline-lg-mobile: "Inter";
+  --font-family-body-rt: "Inter";
+
+  --container-max: 1200px;
+}
+
+body {
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(208, 188, 255, 0.05) 0%,
+    rgba(10, 10, 10, 1) 70%
+  );
+  background-color: #0a0a0a;
+  font-family: "Inter", sans-serif;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+@utility text-display {
+  font-family: "Inter", sans-serif;
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+@utility text-headline-lg {
+  font-family: "Inter", sans-serif;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+@utility text-headline-lg-mobile {
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+@utility text-title-md {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+
+@utility text-body-rt {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-body-sm {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-mono-code {
+  font-family: "Geist", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-label-caps {
+  font-family: "Geist", sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* Glassmorphism */
+@utility glass-level-1 {
+  background-color: rgba(19, 19, 19, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@utility glass-level-2 {
+  background-color: rgba(19, 19, 19, 0.6);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@utility glass-hover {
+  &:hover {
+    background-color: rgba(19, 19, 19, 0.6);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(208, 188, 255, 0.1);
+  }
+}
+
+@utility btn-gradient {
+  background: linear-gradient(135deg, #a078ff 0%, #6d3bd7 100%);
+}
+
+@utility primary-gradient-bg {
+  background: linear-gradient(135deg, #a078ff 0%, #0566d9 100%);
+}
+
+@utility chat-input-glass {
+  background-color: rgba(19, 19, 19, 0.6);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@utility chat-input-glass-focus {
+  border-color: rgba(208, 188, 255, 0.3);
+  box-shadow: 0 0 15px rgba(208, 188, 255, 0.1);
+}
+
+@utility msg-sent {
+  background: linear-gradient(135deg, #a078ff 0%, #6d3bd7 100%);
+  border: none;
+}
+
+@utility msg-received {
+  background-color: rgba(53, 53, 52, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@utility input-pill {
+  background-color: rgba(19, 19, 19, 0.6);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+@utility text-gradient-primary {
+  background: linear-gradient(90deg, #d0bcff 0%, #adc6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Typing indicator dots */
+.typing-dot {
+  animation: typing 1.4s infinite ease-in-out both;
+}
+.typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+@keyframes typing {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

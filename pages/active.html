@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GhostLink - Active Sessions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-bright": "#3a3939",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1c1b1b",
+                        "surface": "#131313",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed": "#23005c",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#d0bcff",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary": "#003640",
+                        "error-container": "#93000a",
+                        "on-secondary": "#002e6a",
+                        "on-tertiary-fixed": "#001f26",
+                        "primary-fixed": "#e9ddff",
+                        "on-surface-variant": "#cbc3d7",
+                        "tertiary-fixed-dim": "#4cd7f6",
+                        "inverse-primary": "#6d3bd7",
+                        "surface-variant": "#353534",
+                        "surface-container": "#201f1f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed-variant": "#5516be",
+                        "tertiary-fixed": "#acedff",
+                        "tertiary-container": "#009eb9",
+                        "secondary-container": "#0566d9",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#d0bcff",
+                        "on-secondary-fixed-variant": "#004395",
+                        "outline": "#958ea0",
+                        "on-tertiary-fixed-variant": "#004e5c",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-container": "#002f38",
+                        "primary-container": "#a078ff",
+                        "on-secondary-container": "#e6ecff",
+                        "tertiary": "#4cd7f6",
+                        "surface-container-highest": "#353534",
+                        "outline-variant": "#494454",
+                        "on-background": "#e5e2e1",
+                        "background": "#131313",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-secondary-fixed": "#001a42",
+                        "on-error": "#690005",
+                        "primary": "#d0bcff",
+                        "secondary": "#adc6ff",
+                        "on-primary": "#3c0091",
+                        "inverse-on-surface": "#313030",
+                        "on-primary-container": "#340080"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "base": "4px",
+                        "gutter": "20px",
+                        "container-max": "1200px",
+                        "xl": "40px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "sm": "8px"
+                    },
+                    fontFamily: {
+                        "title-md": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display": ["Inter"],
+                        "mono-code": ["Geist"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-rt": ["Inter"]
+                    },
+                    fontSize: {
+                        "title-md": ["18px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "mono-code": ["13px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-rt": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Level 1 Glass */
+        .glass-level-1 {
+            background-color: rgba(19, 19, 19, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Gradient Button Background */
+        .btn-gradient {
+            background: linear-gradient(135deg, #a078ff 0%, #6d3bd7 100%);
+        }
+        /* Void Background */
+        body {
+            background: radial-gradient(circle at 50% 0%, rgba(208, 188, 255, 0.05) 0%, rgba(10, 10, 10, 1) 70%);
+            background-color: #0A0A0A;
+        }
+    </style>
+</head>
+<body class="text-on-surface h-screen overflow-hidden flex font-body-rt selection:bg-primary selection:text-on-primary">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex bg-surface-container/40 backdrop-blur-2xl h-screen w-64 fixed left-0 top-0 border-r border-white/10 flex-col p-md z-40 shadow-none">
+<!-- Header / Brand -->
+<div class="mb-xl flex items-center gap-sm px-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center overflow-hidden flex-shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight leading-none truncate">Session Active</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">P2P Protocol v2.1</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-primary/20 text-primary border-r-2 border-primary active:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-title-md text-title-md">Active Sessions</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-title-md text-title-md">Connected Peers</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-title-md text-title-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-colors active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="encrypted">encrypted</span>
+<span class="font-title-md text-title-md">Vault</span>
+</a>
+</div>
+<!-- CTA & Footer -->
+<div class="mt-auto flex flex-col gap-sm">
+<button class="w-full py-sm rounded-lg btn-gradient text-white font-title-md text-title-md hover:brightness-125 transition-all active:scale-95 flex items-center justify-center gap-sm shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Session
+            </button>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-white/5 hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="policy">policy</span>
+<span class="font-body-sm text-body-sm">Security Log</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 relative h-full">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 md:left-64 right-0 z-50 flex justify-between items-center px-lg py-sm bg-surface/40 backdrop-blur-xl border-b border-white/10 shadow-none">
+<div class="flex items-center gap-md">
+<!-- Mobile Menu Icon -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display text-display text-primary tracking-tighter">GhostLink</h1>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden sm:flex gap-md text-primary">
+<span class="material-symbols-outlined hover:brightness-125 transition-all cursor-pointer" data-icon="lock_open">lock_open</span>
+<span class="material-symbols-outlined hover:brightness-125 transition-all cursor-pointer" data-icon="security">security</span>
+<span class="material-symbols-outlined hover:brightness-125 transition-all cursor-pointer" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+</div>
+<button class="text-error font-title-md text-title-md hover:text-error/80 hover:bg-error/10 px-md py-xs rounded-lg transition-all border border-transparent hover:border-error/20 active:scale-95 flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">power_settings_new</span>
+                    Destroy Session
+                </button>
+</div>
+</header>
+<!-- Canvas / Page Content -->
+<main class="flex-1 overflow-y-auto pt-[88px] p-md md:p-lg pb-xl">
+<div class="max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-md mb-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Active Sessions</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage and monitor current ephemeral connections.</p>
+</div>
+<button class="bg-error/10 text-error border border-error/20 hover:bg-error/20 px-lg py-sm rounded-lg font-title-md text-title-md transition-all active:scale-95 flex items-center gap-sm w-full sm:w-auto justify-center">
+<span class="material-symbols-outlined">warning</span>
+                        Terminate All
+                    </button>
+</div>
+<!-- Bento Grid / Session Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Card 1 (Active/Glowing) -->
+<div class="glass-level-1 rounded-xl p-md flex flex-col relative overflow-hidden group">
+<!-- Active Glow Indicator -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-[40px] group-hover:bg-primary/30 transition-all"></div>
+<div class="flex justify-between items-start mb-md relative z-10">
+<div>
+<span class="font-label-caps text-label-caps text-primary border border-primary/30 bg-primary/10 px-xs py-[2px] rounded uppercase">End-to-End Encrypted</span>
+<div class="font-mono-code text-mono-code text-on-surface mt-sm flex items-center gap-xs">
+<span class="text-on-surface-variant">ID:</span> 0x8F9a...2E1c
+                                </div>
+</div>
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-sm animate-pulse" style="font-variation-settings: 'FILL' 1;">sensors</span>
+<span class="font-label-caps text-label-caps">LIVE</span>
+</div>
+</div>
+<div class="flex-1 mt-md mb-lg relative z-10 grid grid-cols-2 gap-sm">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Peers</span>
+<div class="flex items-center gap-xs text-on-surface font-title-md text-title-md">
+<span class="material-symbols-outlined text-on-surface-variant">group</span> 4
+                                </div>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Uptime</span>
+<div class="flex items-center gap-xs text-on-surface font-title-md text-title-md">
+<span class="material-symbols-outlined text-on-surface-variant">timer</span> 02:14:39
+                                </div>
+</div>
+</div>
+<button class="mt-auto w-full py-sm rounded-lg bg-white/5 border border-white/10 text-on-surface hover:bg-white/10 hover:border-white/20 transition-all active:scale-95 font-title-md text-title-md z-10">
+                            Switch to Room
+                        </button>
+</div>
+<!-- Card 2 -->
+<div class="glass-level-1 rounded-xl p-md flex flex-col relative overflow-hidden group">
+<div class="flex justify-between items-start mb-md relative z-10">
+<div>
+<span class="font-label-caps text-label-caps text-tertiary border border-tertiary/30 bg-tertiary/10 px-xs py-[2px] rounded uppercase">P2P Routing</span>
+<div class="font-mono-code text-mono-code text-on-surface mt-sm flex items-center gap-xs">
+<span class="text-on-surface-variant">ID:</span> 0x1A4b...9D8f
+                                </div>
+</div>
+</div>
+<div class="flex-1 mt-md mb-lg relative z-10 grid grid-cols-2 gap-sm">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Peers</span>
+<div class="flex items-center gap-xs text-on-surface font-title-md text-title-md">
+<span class="material-symbols-outlined text-on-surface-variant">group</span> 2
+                                </div>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Uptime</span>
+<div class="flex items-center gap-xs text-on-surface font-title-md text-title-md">
+<span class="material-symbols-outlined text-on-surface-variant">timer</span> 00:45:12
+                                </div>
+</div>
+</div>
+<button class="mt-auto w-full py-sm rounded-lg bg-white/5 border border-white/10 text-on-surface hover:bg-white/10 hover:border-white/20 transition-all active:scale-95 font-title-md text-title-md z-10">
+                            Switch to Room
+                        </button>
+</div>
+<!-- Card 3 -->
+<div class="glass-level-1 rounded-xl p-md flex flex-col relative overflow-hidden group">
+<div class="flex justify-between items-start mb-md relative z-10">
+<div>
+<span class="font-label-caps text-label-caps text-primary border border-primary/30 bg-primary/10 px-xs py-[2px] rounded uppercase">End-to-End Encrypted</span>
+<div class="font-mono-code text-mono-code text-on-surface mt-sm flex items-center gap-xs">
+<span class="text-on-surface-variant">ID:</span> 0x7C2e...1B4a
+                                </div>
+</div>
+</div>
+<div class="flex-1 mt-md mb-lg relative z-10 grid grid-cols-2 gap-sm">
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Peers</span>
+<div class="flex items-center gap-xs text-on-surface font-title-md text-title-md">
+<span class="material-symbols-outlined text-on-surface-variant">group</span> 12
+                                </div>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Uptime</span>
+<div class="flex items-center gap-xs text-on-surface font-title-md text-title-md">
+<span class="material-symbols-outlined text-on-surface-variant">timer</span> 14:02:05
+                                </div>
+</div>
+</div>
+<button class="mt-auto w-full py-sm rounded-lg bg-white/5 border border-white/10 text-on-surface hover:bg-white/10 hover:border-white/20 transition-all active:scale-95 font-title-md text-title-md z-10">
+                            Switch to Room
+                        </button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

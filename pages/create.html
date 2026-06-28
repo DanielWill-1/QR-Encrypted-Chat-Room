@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ethereal Cipher - Create New Session</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-bright": "#3a3939",
+                      "error": "#ffb4ab",
+                      "surface-container-low": "#1c1b1b",
+                      "surface": "#131313",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "on-primary-fixed": "#23005c",
+                      "surface-dim": "#131313",
+                      "primary-fixed-dim": "#d0bcff",
+                      "on-surface": "#e5e2e1",
+                      "on-tertiary": "#003640",
+                      "error-container": "#93000a",
+                      "on-secondary": "#002e6a",
+                      "on-tertiary-fixed": "#001f26",
+                      "primary-fixed": "#e9ddff",
+                      "on-surface-variant": "#cbc3d7",
+                      "tertiary-fixed-dim": "#4cd7f6",
+                      "inverse-primary": "#6d3bd7",
+                      "surface-variant": "#353534",
+                      "surface-container": "#201f1f",
+                      "surface-container-lowest": "#0e0e0e",
+                      "surface-container-high": "#2a2a2a",
+                      "on-primary-fixed-variant": "#5516be",
+                      "tertiary-fixed": "#acedff",
+                      "tertiary-container": "#009eb9",
+                      "secondary-container": "#0566d9",
+                      "on-error-container": "#ffdad6",
+                      "surface-tint": "#d0bcff",
+                      "on-secondary-fixed-variant": "#004395",
+                      "outline": "#958ea0",
+                      "on-tertiary-fixed-variant": "#004e5c",
+                      "inverse-surface": "#e5e2e1",
+                      "on-tertiary-container": "#002f38",
+                      "primary-container": "#a078ff",
+                      "on-secondary-container": "#e6ecff",
+                      "tertiary": "#4cd7f6",
+                      "surface-container-highest": "#353534",
+                      "outline-variant": "#494454",
+                      "on-background": "#e5e2e1",
+                      "background": "#131313",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-secondary-fixed": "#001a42",
+                      "on-error": "#690005",
+                      "primary": "#d0bcff",
+                      "secondary": "#adc6ff",
+                      "on-primary": "#3c0091",
+                      "inverse-on-surface": "#313030",
+                      "on-primary-container": "#340080"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "gutter": "20px",
+                      "container-max": "1200px",
+                      "xl": "40px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "title-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "mono-code": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-rt": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "title-md": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "mono-code": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-rt": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(19, 19, 19, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-modal {
+            background-color: rgba(19, 19, 19, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, #d0bcff, #adc6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .primary-gradient-bg {
+            background: linear-gradient(135deg, #a078ff 0%, #0566d9 100%);
+        }
+
+        .primary-gradient-bg:hover {
+            filter: brightness(1.25);
+            transition: filter 0.3s ease;
+        }
+
+        .input-pill {
+            background-color: rgba(19, 19, 19, 0.6);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .input-pill:focus-within {
+            border-color: rgba(208, 188, 255, 0.5);
+            box-shadow: 0 0 10px rgba(208, 188, 255, 0.2);
+        }
+        
+        /* WebGL Shader Container */
+        .shader-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-rt min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Background Shader -->
+<div class="shader-bg">
+
+<!-- Fallback gradient if shader fails -->
+<div class="absolute inset-0 bg-gradient-to-br from-background via-surface-container-lowest to-surface-container/50 -z-10 mix-blend-overlay"></div>
+</div>
+<!-- Top Navigation (Shell suppressed for this flow, but providing minimal header for context) -->
+<header class="w-full p-lg flex justify-between items-center z-50">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">vpn_lock</span>
+<span class="font-title-md text-title-md text-on-surface">GhostLink</span>
+</div>
+<button class="flex items-center justify-center p-sm rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-md md:p-lg z-10 relative">
+<!-- Central Glassmorphic Card -->
+<div class="glass-modal rounded-xl w-full max-w-md p-xl flex flex-col gap-lg relative overflow-hidden">
+<!-- Subtle glow effect behind card content -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-primary/10 blur-[50px] rounded-full pointer-events-none"></div>
+<!-- Header & Icon -->
+<div class="flex flex-col items-center text-center gap-md">
+<div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center border border-white/10 shadow-[0_0_30px_rgba(208,188,255,0.15)] relative">
+<span class="material-symbols-outlined text-primary text-[48px]" style="font-variation-settings: 'wght' 200;">fingerprint</span>
+<!-- Scanning animation ring -->
+<div class="absolute inset-0 rounded-full border border-primary/30 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+</div>
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface gradient-text pb-xs">Create New Session</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Initialize an ephemeral, end-to-end encrypted connection.</p>
+</div>
+</div>
+<!-- Configuration Form -->
+<form class="flex flex-col gap-lg w-full mt-sm" onsubmit="event.preventDefault();">
+<!-- Session ID / Name Input -->
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant flex justify-between items-center">
+                        Session Identifier
+                        <button class="text-primary hover:text-primary-fixed transition-colors flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[14px]">autorenew</span>
+                            Generate Random
+                        </button>
+</label>
+<div class="input-pill rounded-lg flex items-center px-md py-sm">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm text-[20px]">tag</span>
+<input class="bg-transparent border-none outline-none w-full text-on-surface font-mono-code text-mono-code placeholder:text-on-surface-variant/50 focus:ring-0 p-0" placeholder="Set Custom Session Name" type="text" value="session_alpha_99x"/>
+</div>
+</div>
+<!-- Expiry Configuration -->
+<div class="flex flex-col gap-sm">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Session Expiry</label>
+<div class="grid grid-cols-4 gap-sm">
+<!-- 1h Option -->
+<label class="cursor-pointer relative">
+<input checked="" class="peer sr-only" name="expiry" type="radio" value="1h"/>
+<div class="h-full px-sm py-md rounded-lg border border-white/10 bg-surface-container/30 text-center flex flex-col items-center justify-center gap-xs peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">hourglass_top</span>
+<span class="font-body-sm text-body-sm text-on-surface peer-checked:text-primary">1h</span>
+</div>
+</label>
+<!-- 4h Option -->
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="expiry" type="radio" value="4h"/>
+<div class="h-full px-sm py-md rounded-lg border border-white/10 bg-surface-container/30 text-center flex flex-col items-center justify-center gap-xs peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">hourglass_empty</span>
+<span class="font-body-sm text-body-sm text-on-surface peer-checked:text-primary">4h</span>
+</div>
+</label>
+<!-- 24h Option -->
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="expiry" type="radio" value="24h"/>
+<div class="h-full px-sm py-md rounded-lg border border-white/10 bg-surface-container/30 text-center flex flex-col items-center justify-center gap-xs peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">hourglass_bottom</span>
+<span class="font-body-sm text-body-sm text-on-surface peer-checked:text-primary">24h</span>
+</div>
+</label>
+<!-- Manual Option -->
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="expiry" type="radio" value="manual"/>
+<div class="h-full px-sm py-md rounded-lg border border-white/10 bg-surface-container/30 text-center flex flex-col items-center justify-center gap-xs peer-checked:bg-primary/20 peer-checked:border-primary/50 peer-checked:text-primary transition-all hover:bg-white/5">
+<span class="material-symbols-outlined text-[20px]">timer_off</span>
+<span class="font-body-sm text-body-sm text-on-surface peer-checked:text-primary">Manual</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Advanced Options Toggle -->
+<div class="flex items-center justify-between py-xs border-b border-white/10 pb-md">
+<span class="font-body-sm text-body-sm text-on-surface">Require Peer Authentication</span>
+<button class="w-10 h-6 bg-surface-container rounded-full relative border border-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 group" id="auth-toggle" type="button">
+<span class="absolute left-1 top-1 w-4 h-4 bg-on-surface-variant rounded-full transition-transform translate-x-0 group-[.active]:translate-x-4 group-[.active]:bg-primary"></span>
+</button>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-md px-lg rounded-lg primary-gradient-bg text-on-primary font-title-md text-title-md flex items-center justify-center gap-sm mt-sm shadow-[0_4px_14px_0_rgba(160,120,255,0.39)] transition-all active:scale-[0.98]" type="submit">
+<span class="material-symbols-outlined">shield_locked</span>
+                    Initialize Secure Session
+                </button>
+<p class="text-center font-mono-code text-mono-code text-on-surface-variant/50 mt-xs">
+<span class="material-symbols-outlined text-[12px] align-middle mr-xs">encrypted</span>E2E Encryption Active
+                </p>
+</form>
+</div>
+</main>
+<script>
+        // Simple toggle logic for the authentication switch
+        document.getElementById('auth-toggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            if(this.classList.contains('active')) {
+                this.classList.replace('border-white/10', 'border-primary/50');
+            } else {
+                this.classList.replace('border-primary/50', 'border-white/10');
+            }
+        });
+    </script>
+</body></html>
