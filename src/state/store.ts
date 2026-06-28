@@ -29,7 +29,7 @@ export const useStore = create<{
 
   // Actions
   setView: (view: AppState["view"]) => void;
-  setNavView: (view: AppState["navView"]) => void;
+  setNavView: (view: AppState["navView"], options?: { syncUrl?: boolean }) => void;
   setActiveSession: (id: SessionId | null) => void;
   addSession: (session: Session) => void;
   updateSession: (id: SessionId, updates: Partial<Session>) => void;
@@ -52,7 +52,15 @@ export const useStore = create<{
   config: DEFAULT_CONFIG,
 
   setView: (view) => set({ view }),
-  setNavView: (navView) => set({ navView }),
+  setNavView: (navView, options) => {
+    set({ navView });
+    if (options?.syncUrl === false || typeof window === "undefined") return;
+
+    const path = navViewToPath(navView);
+    if (window.location.pathname !== path) {
+      window.history.pushState({ navView }, "", path);
+    }
+  },
   setActiveSession: (id) => set({ activeSessionId: id }),
   addSession: (session) =>
     set((s) => ({
@@ -108,3 +116,59 @@ export const useStore = create<{
     }, 2000);
   },
 }));
+
+export function navViewToPath(view: AppState["navView"]): string {
+  switch (view) {
+    case "dashboard":
+      return "/sessions";
+    case "peers":
+      return "/connected";
+    case "logs":
+      return "/logs";
+    case "settings":
+      return "/settings";
+    case "vault":
+      return "/vault";
+    case "qrPairing":
+      return "/qr-pairing";
+    case "pairingCode":
+      return "/pairing-code";
+    case "chat":
+      return "/chat";
+    case "landing":
+    case null:
+    default:
+      return "/";
+  }
+}
+
+export function pathToNavView(pathname: string): AppState["navView"] {
+  const normalized = pathname.replace(/\/$/, "") || "/";
+  switch (normalized) {
+    case "/sessions":
+    case "/active":
+    case "/dashboard":
+      return "dashboard";
+    case "/connected":
+    case "/peers":
+      return "peers";
+    case "/logs":
+    case "/security-log":
+      return "logs";
+    case "/settings":
+      return "settings";
+    case "/vault":
+      return "vault";
+    case "/qr-pairing":
+      return "qrPairing";
+    case "/pairing-code":
+      return "pairingCode";
+    case "/chat":
+      return "chat";
+    case "/join":
+    case "/create":
+    case "/":
+    default:
+      return null;
+  }
+}

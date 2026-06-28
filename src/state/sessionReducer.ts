@@ -23,6 +23,9 @@ export function canTransition(from: SessionState, to: SessionState): boolean {
 }
 
 export function transition(session: Session, to: SessionState): Session {
+  if (!session) {
+    throw new Error(`Invalid session transition: missing session -> ${to}`);
+  }
   if (!canTransition(session.state, to)) {
     throw new Error(`Invalid session transition: ${session.state} -> ${to}`);
   }

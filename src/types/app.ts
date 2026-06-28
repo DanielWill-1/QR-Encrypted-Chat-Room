@@ -11,6 +11,9 @@ export type AppView =
   | "dashboard"
   | "chat"
   | "peers"
+  | "vault"
+  | "qrPairing"
+  | "pairingCode"
   | "logs"
   | "settings";
 

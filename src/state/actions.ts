@@ -13,6 +13,7 @@ import { base64UrlEncode } from "@/lib/utils/base64";
 import { INVITE_TTL_MS, HANDSHAKE_NONCE_BYTES } from "@/config/constants";
 import type { InvitePayload } from "@/lib/protocol/schemas";
 import { TransportManager } from "@/lib/transport/TransportManager";
+import QRCode from "qrcode";
 
 const sessionCryptos = new Map<string, CryptoSession>();
 
@@ -223,11 +224,16 @@ export async function createSession(
   };
 
   const inviteString = await encodeInvite(invitePayload);
+  const inviteQrDataUrl = await QRCode.toDataURL(inviteString, {
+    margin: 1,
+    width: 240,
+    color: { dark: "#131313", light: "#ffffffff" },
+  });
 
   const session: Session = {
     id: sessionId, state: "creating", createdAt, expiresAt,
     role: "host", displayName: displayName ?? store.config.displayName,
-    messages: [], unreadCount: 0,
+    messages: [], unreadCount: 0, inviteString, inviteQrDataUrl,
   };
 
   store.addSession(session);
@@ -235,17 +241,22 @@ export async function createSession(
   pendingHandshakes.set(sessionId, { keyPair, hostNonce });
   store.updateSession(sessionId, transition(session, "inviting").state as never);
 
-  try {
-    await transport.createHostSession(sessionId, store.config.signalingUrl);
-  } catch (err) {
-    store.updateSession(sessionId, transition(session, "error").state as never);
-    store.updateSession(sessionId, { errorMessage: `Transport failed: ${(err as Error).message}` });
-    pendingHandshakes.delete(sessionId);
-    throw err;
-  }
-
-  const updatedSession = store.sessions[sessionId];
-  store.updateSession(sessionId, transition(updatedSession, "connecting").state as never);
+  transport.createHostSession(sessionId, store.config.signalingUrl)
+    .then(() => {
+      const updatedSession = useStore.getState().sessions[sessionId];
+      if (!updatedSession || updatedSession.state === "destroying" || updatedSession.state === "destroyed") return;
+      useStore.getState().updateSession(sessionId, transition(updatedSession, "connecting").state as never);
+    })
+    .catch((err) => {
+      const updatedSession = useStore.getState().sessions[sessionId];
+      if (!updatedSession) return;
+      useStore.getState().updateSession(sessionId, {
+        state: "error",
+        errorMessage: `Transport failed: ${(err as Error).message}`,
+      });
+      pendingHandshakes.delete(sessionId);
+      addLog("Transport Error", sessionId, `Transport failed: ${(err as Error).message}`, "error", "error");
+    });
 
   addLog("Session Created", sessionId, `Created ephemeral session ${sessionId}`, "info", "add_circle");
 
@@ -255,7 +266,7 @@ export async function createSession(
     pendingHandshakes.delete(sessionId);
   });
 
-  return { session: { ...session, state: "connecting" }, inviteString, invitePayload };
+  return { session: { ...session, state: "inviting" }, inviteString, invitePayload };
 }
 
 export async function joinSession(inviteString: string): Promise<Session> {
@@ -293,7 +304,10 @@ export async function joinSession(inviteString: string): Promise<Session> {
     throw err;
   }
 
-  const updatedSession = store.sessions[invite.sid];
+  const updatedSession = useStore.getState().sessions[invite.sid];
+  if (!updatedSession) {
+    throw new Error("Session was not persisted after join");
+  }
   store.updateSession(invite.sid as SessionId, transition(updatedSession, "connecting").state as never);
 
   transport.sendRaw(invite.sid, {

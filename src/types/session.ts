@@ -42,6 +42,8 @@ export interface Session {
   displayName: string;
   peer?: PeerInfo;
   messages: ChatMessage[];
+  inviteString?: string;
+  inviteQrDataUrl?: string;
   errorMessage?: string;
   unreadCount: number;
   latency?: number;

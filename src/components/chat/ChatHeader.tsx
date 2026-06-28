@@ -11,7 +11,7 @@ export function ChatHeader() {
   const displayId = session.id.slice(0, 6).toUpperCase();
 
   return (
-    <header className="bg-surface/40 backdrop-blur-xl fixed top-0 w-full md:w-[calc(100%-256px)] z-50 flex justify-between items-center px-lg py-sm border-b border-white/10">
+    <header className="bg-surface/60 backdrop-blur-xl sticky top-0 w-full z-30 flex justify-between items-center px-md md:px-lg py-sm border-b border-white/10">
       <div className="flex items-center gap-md">
         <button className="md:hidden text-on-surface-variant hover:text-primary transition-colors">
           <MaterialIcon name="menu" />
