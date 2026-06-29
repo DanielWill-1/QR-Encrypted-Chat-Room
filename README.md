@@ -1,4 +1,4 @@
-# 👻 GhostLink — Ephemeral P2P Encrypted Chat
+#  GhostLink — Ephemeral P2P Encrypted Chat ( WIP )
 
 Privacy-first, browser-to-browser messaging with zero accounts, zero servers, and zero persistence. Create a session, share a QR code, and chat directly over WebRTC DataChannels with end-to-end encryption via Web Crypto.
 
@@ -13,7 +13,7 @@ Privacy-first, browser-to-browser messaging with zero accounts, zero servers, an
 
 ---
 
-## 🧪 Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -30,7 +30,7 @@ Privacy-first, browser-to-browser messaging with zero accounts, zero servers, an
 
 ---
 
-## 🔐 How It Works
+##  How It Works
 
 1. **Create a session** — the app generates an ephemeral ECDH key pair and invitation.
 2. **Share the QR code** — the joining peer scans or pastes the invite string.
@@ -43,7 +43,7 @@ Privacy-first, browser-to-browser messaging with zero accounts, zero servers, an
 
 ---
 
-## 🛠️ Setup
+##  Setup
 
 ```bash
 git clone https://github.com/DanielWill-1/QR-Encrypted-Chat-Room
@@ -72,7 +72,7 @@ Deploy `dist/` to any static host (GitHub Pages, Netlify, Cloudflare Pages, Ngin
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -126,7 +126,7 @@ signaling-server/            # Optional WebSocket signaling server
 
 ---
 
-## 📐 Protocol
+##  Protocol
 
 | Detail | Value |
 |---|---|
@@ -145,7 +145,7 @@ Full protocol specification, threat model, and cryptographic details are in [MAS
 
 ---
 
-## ✅ Running Tests
+## Running Tests
 
 ```bash
 npm test              # single run
@@ -155,12 +155,12 @@ npm run lint          # TypeScript type-check
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Pull requests are welcome. Please read [MASTER_TECHNICAL_DESIGN.md](./MASTER_TECHNICAL_DESIGN.md) for architectural context before contributing protocol, crypto, or networking changes.
 
 ---
 
-## 📄 License
+## License
 
 MIT — see [LICENSE](./LICENSE) for details.
